@@ -1,0 +1,66 @@
+.card-container {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .card {
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+    border: 1px ;
+    border-radius: 5px;
+  }
+  
+  @media (max-width: 768px) {
+    .card {
+      width: 100%; 
+    }
+  }
+  
+  .card-body {
+    display: flex;
+    padding: 15px;
+  }
+  
+  .book-info {
+    display: flex;
+    width: 100%;
+  }
+  
+  .book-image {
+    flex: 1;
+    margin-right: 15px;
+  }
+  
+  .book-details {
+    flex: 3;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card-text-1{
+    margin-bottom: 5px;
+    font-weight: light;
+    
+  }
+  .card-text-2{
+    font-weight: lighter;
+    font-style: italic;
+  }
+  
+  .btn-info {
+    background-color: #17a2b8;
+  border-color: #17a2b8;
+  color: #ffffff;
+  margin-top: 30px;
+  }
+  
+  .btn-info:hover {
+    background-color: #138496;;
+  }
+  

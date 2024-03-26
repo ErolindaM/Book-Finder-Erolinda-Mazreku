@@ -1,11 +1,18 @@
-<div class="container vspace">
-    <div class="page-header">
-      <h2>Book finder</h2>
-    </div>
-    <div class="row vspace">
-      <div class="input-group">
-        <app-search-box></app-search-box>
-      </div>
+<div class="container">
+  <div class="page-header">
+    <h1 class="header">Book Finder</h1>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-search-box (search)="onSearch($event)"></app-search-box>
     </div>
   </div>
-  
+  <div class="row">
+    <div *ngIf="isLoading" class="center-loader">
+      <img src="assets/images/loading.gif" class="gif" alt="Loading..." />
+    </div>
+    <div *ngIf="!isLoading">
+      <app-search-result [searchResults]="searchResults"></app-search-result>
+    </div>
+  </div>
+</div>

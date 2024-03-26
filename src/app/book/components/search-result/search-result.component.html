@@ -1,1 +1,24 @@
-<p>search-result works!</p>
+<div *ngIf="searchResults.length === 0">
+  console.log('no results');
+  <p>No results found.</p>
+</div>
+<div *ngIf="searchResults.length > 0">
+    <div class="card-container">
+      <div class="card" *ngFor="let book of searchResults">
+        <div class="card-body">
+          <div class="book-info">
+            <div class="book-image">
+              <img src="{{ book.volumeInfo.imageLinks?.thumbnail }}" alt="Book Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="card-title">{{ book.volumeInfo.title }}</h4>
+              <p class="card-text-1">Authors: {{ book.volumeInfo.authors?.join(', ') }}</p>
+              <p class="card-text-2">Published Date: {{ book.volumeInfo.publishedDate }}</p>
+              <a href="{{ book.volumeInfo.infoLink }}" target="_blank" class="btn btn-info">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

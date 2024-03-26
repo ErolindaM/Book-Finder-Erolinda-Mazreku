@@ -1,8 +1,10 @@
-<div class="input-group p-5 pt-3">
-    <input type="text" class="form-control" placeholder="Enter title, author, key words, etc...">
-    <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="button">
+<div class="container">
+  <div class="col-12">
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="query" placeholder="Enter title, author, key words, etc...">
+      <button class="btn btn-outline-secondary" type="button" (click)="onSearch()">
         <i class="bi bi-search"></i> Search
       </button>
     </div>
   </div>
+</div>

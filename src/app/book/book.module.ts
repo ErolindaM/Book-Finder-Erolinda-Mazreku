@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { BookComponent } from './book.component';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -13,7 +15,12 @@ import { SearchResultComponent } from './components/search-result/search-result.
     SearchResultComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    HttpClientModule
+  ],
+  exports:[
+    BookComponent
   ]
 })
 export class BookModule { }
