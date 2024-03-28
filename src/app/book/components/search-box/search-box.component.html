@@ -1,8 +1,9 @@
 <div class="container">
   <div class="col-12">
     <div class="input-group">
-      <input type="text" class="form-control" [(ngModel)]="query" placeholder="Enter title, author, key words, etc...">
-      <button class="btn btn-outline-secondary" type="button" (click)="onSearch()">
+      <input type="text" class="form-control" [(ngModel)]="query" placeholder="Enter title, author, key words, etc..."
+      (keyup.enter)="onSearch()">
+      <button class="btn btn-secondary" type="button" (click)="onSearch()">
         <i class="bi bi-search"></i> Search
       </button>
     </div>

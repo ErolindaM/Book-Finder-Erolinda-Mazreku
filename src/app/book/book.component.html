@@ -1,7 +1,9 @@
 <div class="container">
   <div class="page-header">
+    <img src="assets/images/logo.png/" class="image">
     <h1 class="header">Book Finder</h1>
   </div>
+  <p><b> Discover Every Book Imaginable with this Book Finder Application. Search for any title, any author, and watch the literary world unfold before you.</b></p>
   <div class="row">
     <div class="col-12">
       <app-search-box (search)="onSearch($event)"></app-search-box>
@@ -13,6 +15,12 @@
     </div>
     <div *ngIf="!isLoading">
       <app-search-result [searchResults]="searchResults"></app-search-result>
+      <div class="buton">
+      <button class="btn btn-info m-3" (click)="loadMore()" *ngIf="showLoadMoreButton">Load More Books ...</button>
     </div>
+    </div>
+  </div>
+  <div class="footer">
+    &copy; 2024 Book Finder Application - All Rights Reserved
   </div>
 </div>

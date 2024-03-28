@@ -10,8 +10,8 @@ export class BookService {
 
     constructor(private http: HttpClient) {}
 
-    searchBooks(query: string): Observable<any> {
-        const url = `${this.apiUrl}?q=${query}`;
+    searchBooks(query: string, startIndex: number = 0, maxResults: number = 10): Observable<any> {
+        const url = `${this.apiUrl}?q=${query}&startIndex=${startIndex}&maxResults=${maxResults}`;
         return this.http.get(url);
     }
 }
