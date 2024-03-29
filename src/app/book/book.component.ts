@@ -48,7 +48,6 @@ export class BookComponent {
     }
   }
   
-
   searchBooks(query: string): void {
     this.isLoading = true;
     this.bookService.searchBooks(query).subscribe(
