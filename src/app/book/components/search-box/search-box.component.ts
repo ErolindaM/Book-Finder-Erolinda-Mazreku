@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search-box',
@@ -6,13 +7,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./search-box.component.css']
 })
 export class SearchBoxComponent {
-  query: string = '';
+  searchQuery = new FormControl('', Validators.required);
 
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {}
 
   onSearch(): void {
-    this.search.emit(this.query.trim());
+    if (this.searchQuery.valid) {
+      this.search.emit(this.searchQuery.value.trim());
+    }
   }
 }

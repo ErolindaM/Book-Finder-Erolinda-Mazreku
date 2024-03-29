@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { BookService } from './book-service';
 
 @Component({
@@ -12,8 +12,7 @@ export class BookComponent {
   showLoadMoreButton: boolean = false;
   startIndex: number = 0;
   maxResults: number = 10;
-  currentQuery: string = ''; // Track the current search query
-  @ViewChild('bookList') bookList!: ElementRef;
+  currentQuery: string = '';
 
   constructor(private bookService: BookService) {}
 
@@ -32,7 +31,7 @@ export class BookComponent {
 
   fetchDefaultBooks(): void {
     this.isLoading = true;
-    const defaultBooks = ['Javascript'];
+    const defaultBooks = ['Web Development'];
 
     for (let term of defaultBooks) {
       this.bookService.searchBooks(term, this.startIndex, this.maxResults).subscribe(
@@ -70,10 +69,8 @@ export class BookComponent {
     this.startIndex += this.maxResults;
 
     if (this.currentQuery === '') {
-      // If no search query, load more default books
       this.fetchDefaultBooks();
     } else {
-      // If search query exists, load more search results
       this.bookService.searchBooks(this.currentQuery, this.startIndex, this.maxResults).subscribe(
         (data: any) => {
           this.isLoading = false;
