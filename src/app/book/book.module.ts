@@ -5,6 +5,8 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewDetailsComponent } from './view-details/view-details.component';
+import { BookRoutingModule } from './book-routing.module';
 
 
 
@@ -12,13 +14,15 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     BookComponent,
     SearchBoxComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    ViewDetailsComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BookRoutingModule
   ],
   exports:[
     BookComponent

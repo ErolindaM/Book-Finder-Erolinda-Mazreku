@@ -3,7 +3,7 @@
     <img src="assets/images/logo.png" class="image">
     <h1 class="header">Book Finder</h1>
   </div>
-  <p><b> Discover Every Book Imaginable with this Book Finder Application. Search for any title, any author, and watch the literary world unfold before you.</b></p>
+  <p> Discover Every Book Imaginable, search for any title, any author, and watch the literary world unfold before you.</p>
   <div class="row">
     <div class="col-12">
       <app-search-box (search)="onSearch($event)"></app-search-box>
@@ -14,10 +14,13 @@
       <img src="assets/images/loading.gif" class="gif" alt="Loading..." />
     </div>
     <div *ngIf="!isLoading">
-      <app-search-result [searchResults]="searchResults"></app-search-result>
+      <app-search-result [searchResults]="searchResults"></app-search-result>      
       <div class="buton">
-      <button class="btn btn-info m-3" (click)="loadMore()" *ngIf="showLoadMoreButton">Load More Books ...</button>
-    </div>
+        <button class="btn btn-info m-3" (click)="loadPrevious()" *ngIf="currentPage > 1">Previous Page</button>
+        <div></div>
+        <button class="btn btn-info m-3" (click)="loadMore()" *ngIf="showLoadMoreButton">Load More Books ...</button>
+      </div>
+      
     </div>
   </div>
   

@@ -7,7 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class SearchResultComponent {
   @Input() searchResults: any[] = [];
-
+  @Input() showLoadMoreButton: boolean = false; 
+  
   constructor() {}
 }
 
