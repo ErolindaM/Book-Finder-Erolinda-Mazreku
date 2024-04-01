@@ -3,24 +3,54 @@
     <img src="assets/images/logo.png" class="image">
     <h1 class="header">Book Finder</h1>
   </div>
-  <p> Discover Every Book Imaginable, search for any title, any author, and watch the literary world unfold before you.</p>
+  <p class="paragraph"> Discover Every Book Imaginable, search for any title, any author, and watch the literary world unfold before you.</p>
+  
   <div class="row">
     <div class="col-12">
-      <app-search-box (search)="onSearch($event)"></app-search-box>
+      <div class="input-group">
+        <input type="text" class="form-control" [formControl]="searchQuery" placeholder="Enter title, author, key words, etc..."
+          (keyup.enter)="onSearch()">
+        <button class="btn btn-secondary" type="button" (click)="onSearch()" [disabled]="searchQuery.invalid">
+          <i class="bi bi-search"></i> Search
+        </button>
+      </div>
     </div>
   </div>
+  
   <div class="row">
     <div *ngIf="isLoading" class="center-loader">
       <img src="assets/images/loading.gif" class="gif" alt="Loading..." />
     </div>
     <div *ngIf="!isLoading">
-      <app-search-result [searchResults]="searchResults"></app-search-result>      
+      <div *ngIf="searchResults.length === 0">
+        <p>No results found.</p>
+      </div>
+      <div *ngIf="searchResults.length > 0">
+        <div class="card-container">
+          <div class="card" *ngFor="let book of searchResults">
+            <div class="card-body">
+              <div class="book-info">
+                <div class="book-image">
+                  <img src="{{ book.volumeInfo.imageLinks?.thumbnail || 'assets/images/bookcover.jpg'}}" alt="Book Cover">
+                </div>
+                <div class="book-details">
+                  <h4 class="card-title">{{ book.volumeInfo.title }}</h4>
+                  <hr>
+                  <p class="card-text-1">Publisher: {{ book.volumeInfo.publisher ? book.volumeInfo.publisher : 'Not Available' }}</p>
+                  <p class="card-text-2">Publication Date: {{ book.volumeInfo.publishedDate }}</p>
+                  <p class="card-text-3">{{ book.volumeInfo.description }}</p>
+                  <button class="btn btn-info" (click)="viewDetails(book.id)">View Details</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="buton">
         <button class="btn btn-info m-3" (click)="loadPrevious()" *ngIf="currentPage > 1">Previous Page</button>
         <div></div>
         <button class="btn btn-info m-3" (click)="loadMore()" *ngIf="showLoadMoreButton">Load More Books ...</button>
       </div>
-      
     </div>
   </div>
   

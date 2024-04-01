@@ -14,5 +14,9 @@ export class BookService {
         const url = `${this.apiUrl}?q=${query}&startIndex=${startIndex}&maxResults=${maxResults}`;
         return this.http.get(url);
     }
-}
 
+    getBookById(id: string): Observable<any> {
+        const url = `${this.apiUrl}/${id}`;
+        return this.http.get(url);
+    }
+}

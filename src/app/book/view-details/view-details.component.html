@@ -1,1 +1,38 @@
-<p>view-details works!</p>
+<div class="container mt-5">
+  <div *ngIf="bookDetails" class="card shadow-lg">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <div class="imagec">
+          <img *ngIf="bookDetails.volumeInfo.imageLinks" [src]="bookDetails.volumeInfo.imageLinks.thumbnail" alt="Book Cover" class="image book-cover">
+          <img *ngIf="!bookDetails.volumeInfo.imageLinks" src="assets/images/bookcover.jpg" alt="No Image Available" class="image book-cover">
+        </div>
+        <div>          
+          <p class="card-text link"><a [href]="bookDetails.volumeInfo.previewLink" target="_blank" class="btn btn-info">Preview Link</a></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title">{{ bookDetails.volumeInfo.title }}</h2>
+          <p class="card-text"><strong>Author/s:</strong> {{ bookDetails.volumeInfo.authors ? bookDetails.volumeInfo.authors.join(', ') : 'Unknown' }}</p>
+          <p class="card-text"><strong>Publisher:</strong> {{ bookDetails.volumeInfo.publisher ? bookDetails.volumeInfo.publisher : 'Not Available' }}</p>
+          <p class="card-text"><strong>Published Date:</strong> {{ bookDetails.volumeInfo.publishedDate }}</p>
+          <p class="card-text"><strong>Categories:</strong> {{ bookDetails.volumeInfo.categories ? bookDetails.volumeInfo.categories.join(', ') : 'Not Available' }}</p>
+          <p class="card-text"><strong>Page Count:</strong> {{ bookDetails.volumeInfo.pageCount }}</p>
+          <hr>
+          <p class="card-text"><strong>Description:</strong></p>
+          <p class="card-text" [innerHTML]="showFullDescription ? bookDetails.volumeInfo.description : truncatedDescription"></p>
+          <a href="javascript:void(0)" *ngIf="shouldShowReadMore() && !showFullDescription" (click)="toggleDescription()">Read More</a>
+          <a href="javascript:void(0)" *ngIf="showFullDescription" (click)="toggleDescription()">See Less</a>
+          
+          <hr>
+        </div>
+      </div>
+    </div>
+    <a routerLink="/book" class="btn btn-info mt-3">
+      <i class="bi bi-arrow-left"></i> Back to Books
+    </a>
+  </div>
+  <div *ngIf="!bookDetails" class="text-center mt-5">
+    <p>Loading...</p>
+  </div>
+</div>

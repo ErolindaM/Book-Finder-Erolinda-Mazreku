@@ -1,0 +1,54 @@
+.card {
+  border: 5px solid #0d9780;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 35px;
+  font-family: "Spectral";
+}
+
+.card-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: double ;
+}
+
+.card-text {
+  font-size: 17px;
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+
+.imagec{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.image {
+ width:280px;
+ height:380px;
+}
+
+.book-cover {
+  border: 2px solid #ddd;
+  padding: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.link{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.btn-info {
+  background-color: #0d9780;
+  color: #ffffff;
+  border-color: #0d9780;
+  }
+
+.btn-info:hover {
+  background-color: #0a7563;
+  border-color: #077664;
+  color: #ffffff;
+}

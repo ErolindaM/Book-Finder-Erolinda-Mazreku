@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { BookService } from './book-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book',
@@ -7,28 +9,31 @@ import { BookService } from './book-service';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent {
+  searchQuery = new FormControl('', Validators.required);
   searchResults: any[] = [];
   isLoading: boolean = false;
   showLoadMoreButton: boolean = false;
   startIndex: number = 0;
-  maxResults: number = 16;
+  maxResults: number = 10;
   currentQuery: string = '';
   currentPage: number = 1;
-  previousResults: any[] = []; // Store previous results
+  previousResults: any[] = []; 
 
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchDefaultBooks();
   }
 
-  onSearch(query: string): void {
-    this.currentQuery = query.trim();
-    this.currentPage = 1;
-    if (this.currentQuery === '') {
-      this.fetchDefaultBooks();
-    } else {
-      this.searchBooks(this.currentQuery);
+  onSearch(): void {
+    if (this.searchQuery.valid) {
+      this.currentQuery = this.searchQuery.value.trim();
+      this.currentPage = 1;
+      if (this.currentQuery === '') {
+        this.fetchDefaultBooks();
+      } else {
+        this.searchBooks(this.currentQuery);
+      }
     }
   }
 
@@ -77,9 +82,7 @@ export class BookComponent {
       this.bookService.searchBooks(this.currentQuery, this.startIndex, this.maxResults).subscribe(
         (data: any) => {
           this.isLoading = false;
-          // Store previous results before updating
           this.previousResults = this.searchResults.slice();
-          // Update searchResults with new items only
           this.searchResults = this.getNewItems(this.previousResults, data.items);
           this.checkLoadMoreButton();
         },
@@ -103,8 +106,7 @@ export class BookComponent {
         this.bookService.searchBooks(this.currentQuery, this.startIndex, this.maxResults).subscribe(
           (data: any) => {
             this.isLoading = false;
-            this.searchResults = this.previousResults.slice();
-            this.previousResults = [];
+            this.searchResults = data.items;
             this.checkLoadMoreButton();
           },
           (error) => {
@@ -121,7 +123,10 @@ export class BookComponent {
   }
 
   getNewItems(previousItems: any[], newItems: any[]): any[] {
-    // Filter out items that are already in previousItems
     return newItems.filter(item => !previousItems.some(prevItem => prevItem.id === item.id));
+  }
+
+  viewDetails(bookId: string): void {
+    this.router.navigate(['/view-details', bookId]);
   }
 }
